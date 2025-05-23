@@ -1,0 +1,14 @@
+DevProfile Site Generator – Commercial License
+
+If you are a company or individual who wishes to use this project
+but does not want to comply with the AGPL (for example, to use it
+in a closed-source SaaS or internal product), you may purchase a
+commercial license.
+
+Please contact:
+
+    HemathKumar R  
+    ✉️  hem@hemath.dev
+    ✉️  djhemath@gmail.com
+
+to discuss pricing and licensing terms.

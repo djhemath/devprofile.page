@@ -1,0 +1,26 @@
+# Step 1: Build Angular
+FROM node:22-slim AS build-client
+WORKDIR /app
+COPY client ./client
+WORKDIR /app/client
+RUN npm install && npm run build
+
+# Step 2: Setup and build Node.js backend (TypeScript)
+FROM node:22-slim
+WORKDIR /app
+
+# Copy server files and install dependencies
+COPY server ./server
+COPY server/package*.json ./server/
+WORKDIR /app/server
+RUN npm install
+
+# 🔧 Add TypeScript and build
+RUN npm install -g typescript
+RUN npm run build
+
+# Copy Angular build to backend's public folder
+COPY --from=build-client /app/client/dist/devprofile-client/browser ./public/
+
+EXPOSE 3000
+CMD ["node", "dist/index.js"]
