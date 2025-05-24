@@ -47,3 +47,4 @@ client/Thumbs.db
 # ---------- SERVER ---------
 server/.env
 server/dist
+server/public

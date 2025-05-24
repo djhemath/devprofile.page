@@ -1,5 +1,10 @@
 import express from 'express';
 import path from 'path';
+import dotenv from 'dotenv';
+
+import authRouter from './auth/auth.router';
+
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -9,7 +14,9 @@ app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.static(path.join(__dirname, '../public')));
 
-// Example API route
+app.use('/oauth', authRouter);
+
+// Ping - basic health check
 app.get('/api/ping', (_, res) => {
   res.json({ message: 'pong' });
 });
