@@ -3,6 +3,7 @@ import path from 'path';
 import dotenv from 'dotenv';
 
 import authRouter from './auth/auth.router';
+import { connectMongo } from './config/mongo';
 
 dotenv.config();
 
@@ -26,6 +27,10 @@ app.get('/{*splat}', (_, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
-app.listen(PORT, () => {
-  console.log(`✅ Server running at http://localhost:${PORT}`);
+connectMongo().then(() => {
+  app.listen(PORT, () => {
+    console.log(`✅ Server running at http://localhost:${PORT}`);
+  });
+}).catch(err => {
+  console.log('Mongo DB not connected', err);
 });
