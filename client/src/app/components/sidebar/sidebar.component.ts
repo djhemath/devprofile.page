@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, RouterModule, Routes } from '@angular/router';
 import { routes } from '../../pages/console/console.route';
 import { CommonModule } from '@angular/common';
@@ -14,6 +14,8 @@ export class SidebarComponent {
   public menuItems: Routes = routes[0].children!.filter(route => route.data && route.data['isVisible']);
   public selectedRoute: string[] = [];
 
+  @Output() routeChanged = new EventEmitter<string[]>();
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -23,6 +25,7 @@ export class SidebarComponent {
     ).subscribe(() => {
       const currentDeepRoute = this.getCurrentChildRoute(this.route);
       this.selectedRoute = currentDeepRoute.map(route => route.snapshot.url[0].path);
+      this.routeChanged.emit(this.selectedRoute);
     });
   }
 
