@@ -35,7 +35,7 @@ export const routes: Routes = [
           },
           {
             path: 'details',
-            loadComponent: () => import('./dashboard/dashboard.component').then(m => m.DashboardComponent),
+            loadComponent: () => import('./site/site-details/site-details.component').then(m => m.SiteDetailsComponent),
             data: {
               label: 'Details',
               keyboardShortcut: '1',

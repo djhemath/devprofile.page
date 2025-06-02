@@ -1,0 +1,9 @@
+<section class="site-detail">
+    <app-dynamic-form
+        [config]="formConfig"
+        (onSave)="onSave($event)"
+        (onChange)="onChange($event)"
+    ></app-dynamic-form>
+
+    <div id="preview" [innerHTML]="previewHtml"></div>
+</section>

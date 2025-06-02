@@ -1,0 +1,27 @@
+.site-detail {
+    display: flex;
+    height: 100%;
+
+    app-dynamic-form {
+        width: 60%;
+        height: 100%;
+
+        border-right: 1.5px solid transparent;
+        border-image: repeating-linear-gradient(
+            to bottom,
+            #FFFFFF 0,
+            #FFFFFF 6px,
+            transparent 10px,
+            transparent 16px
+        );
+        border-image-slice: 1;
+        overflow-y: auto;
+    }
+
+    #preview {
+        width: 30%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
