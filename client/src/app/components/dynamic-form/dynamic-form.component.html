@@ -1,0 +1,43 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <div *ngFor="let field of config" class="mb-4">
+    <label [for]="field.id" class="block font-bold mb-1">{{ field.label }}</label>
+
+    <ng-container [ngSwitch]="field.type">
+      <input
+        *ngSwitchCase="'text'"
+        [id]="field.id"
+        [formControlName]="field.id"
+        [placeholder]="field.placeholder"
+        class="input"
+      />
+
+      <textarea
+        *ngSwitchCase="'textarea'"
+        [id]="field.id"
+        [formControlName]="field.id"
+        [placeholder]="field.placeholder"
+        class="textarea"
+      ></textarea>
+
+      <select
+        *ngSwitchCase="'select'"
+        [id]="field.id"
+        [formControlName]="field.id"
+        class="select"
+      >
+        <option *ngFor="let opt of field.options" [value]="opt">{{ opt }}</option>
+      </select>
+
+      <input
+        *ngSwitchCase="'checkbox'"
+        type="checkbox"
+        [id]="field.id"
+        [formControlName]="field.id"
+      />
+    </ng-container>
+
+    <small *ngIf="field.helpText" class="text-gray-500">{{ field.helpText }}</small>
+  </div>
+
+  <button type="submit" class="btn-primary">Save</button>
+</form>
