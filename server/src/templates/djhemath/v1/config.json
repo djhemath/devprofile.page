@@ -1,0 +1,163 @@
+[
+  {
+    "id": "name",
+    "label": "Name",
+    "type": "text",
+    "placeholder": "Enter your full name",
+    "defaultValue": "DJ Hemath",
+    "required": true,
+    "helpText": "Shown in the browser tab and SEO title"
+  },
+  {
+    "id": "email",
+    "label": "Email",
+    "type": "email",
+    "placeholder": "Enter your email",
+    "defaultValue": "",
+    "required": true
+  },
+  {
+    "id": "bio",
+    "label": "Bio",
+    "type": "textarea",
+    "placeholder": "Tell us about yourself",
+    "defaultValue": "Unorthodox software engineer",
+    "required": true
+  },
+  {
+    "id": "highlightedWords",
+    "label": "Words to higlight",
+    "type": "repeatableGroup",
+    "required": false,
+    "helpText": "Words that need to be highlighted with different colors",
+    "fields": [
+      {
+        "id": "position",
+        "label": "Word position",
+        "type": "number",
+        "helpText": "Start counting from 1. For example, in 'I love building apps', 'love' is word 2."
+      },
+      {
+        "id": "color",
+        "label": "Color",
+        "type": "color"
+      }
+    ]
+  },
+  {
+    "id": "projects",
+    "label": "Projects",
+    "type": "repeatableGroup",
+    "singlularLabel": "Project",
+    "helpText": "Add your personal or open-source projects",
+    "fields": [
+      {
+        "id": "name",
+        "label": "Project Name",
+        "type": "text",
+        "required": true
+      },
+      {
+        "id": "description",
+        "label": "Description",
+        "type": "textarea"
+      },
+      {
+        "id": "demoLink",
+        "label": "Project demo Link",
+        "type": "url"
+      },
+      {
+        "id": "repositoryLink",
+        "label": "Project repository Link",
+        "type": "url"
+      },
+      {
+        "id": "image",
+        "label": "Project Image URL",
+        "type": "text"
+      }
+    ]
+  },
+  {
+    "id": "socials",
+    "label": "Socials",
+    "type": "repeatableGroup",
+    "singlularLabel": "Social",
+    "minItems": 0,
+    "maxItems": 3,
+    "helpText": "Add your social media accounts",
+    "fields": [
+      {
+        "id": "socialMedia",
+        "label": "Social media",
+        "type": "dropdown",
+        "options": [
+          "Github",
+          "Linkedin",
+          "Twitter"
+        ],
+        "required": true
+      },
+      {
+        "id": "url",
+        "label": "URL",
+        "type": "url"
+      }
+    ]
+  },
+  {
+    "id": "talks",
+    "label": "Talks",
+    "type": "repeatableGroup",
+    "singlularLabel": "Talk",
+    "helpText": "Add your talks",
+    "fields": [
+      {
+        "id": "topic",
+        "label": "Topic",
+        "type": "text",
+        "required": true
+      },
+      {
+        "id": "place",
+        "label": "Where",
+        "type": "text",
+        "required": true,
+        "helpText": "Could the place, company or name of the event in which you gave the talk"
+      },
+      {
+        "id": "date",
+        "label": "Date",
+        "type": "date"
+      },
+      {
+        "id": "isFutureTalk",
+        "label": "Is it a future talk",
+        "type": "checkbox"
+      }
+    ]
+  },
+  {
+    "id": "technologies",
+    "label": "Technologies",
+    "type": "repeatableGroup",
+    "singlularLabel": "Technology",
+    "helpText": "Add your technologies",
+    "fields": [
+      {
+        "id": "name",
+        "label": "Name",
+        "type": "text",
+        "required": true
+      },
+      {
+        "id": "image",
+        "label": "Image",
+        "type": "file",
+        "required": false,
+        "helpText": "Image of the technology. Use PNG with transparent backgrounds to make it look good"
+      }
+    ]
+  }
+]

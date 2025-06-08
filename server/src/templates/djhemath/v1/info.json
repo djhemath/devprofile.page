@@ -1,0 +1,14 @@
+{
+    "name": "DJ Hemath",
+    "id": "djhemath",
+    "version": "1",
+    "author": "DJ Hemath",
+    "screenshot": "./screenshot.png",
+    "supportsDarkTheme": false,
+    "assets": {
+        "styles": ["assets/css/style.css"],
+        "scripts": [],
+        "images": ["assets/images/twitter.png"]
+    },
+    "config": "./config.json"
+}

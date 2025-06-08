@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="generator" content="Hugo 0.139.3" />
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title><%= data.meta.title %></title>
+
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mynerve&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="alternate"
+      title="Subscribe to Hemath's blog"
+      type="application/rss+xml"
+      title="RSS"
+      href="/index.xml"
+    />
+
+    <meta name="author" content="Hemath" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="robots" content="index, follow" />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+
+    <meta
+      name="description"
+      content="An unorthodox software engineer who lives to craft world class software applications and mentor students."
+    />
+    <meta
+      name="keywords"
+      content="DJ Hemath, djhemath, Software Engineer, Software Engineer in Chennai, Best software engineer in chennai, React developer, JavaScript developer, TypeScript developer, NodeJS developer, Fullstack developer, Python developer"
+    />
+
+    <meta property="og:title" content="Hemath - Software Engineer" />
+    <meta
+      property="og:description"
+      content="An unorthodox software engineer who lives to craft world class software applications and mentor students."
+    />
+    <meta property="og:url" content="https://hemath.dev"/ >
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:image"
+      content="https://firebasestorage.googleapis.com/v0/b/djhemath-site.firebasestorage.app/o/og.png?alt=media&token=ae3ea1f1-7f2b-45d7-9b33-41d40195254f"
+    />
+    <meta property="og:site_name" content="Hemath - Software engineer" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hemath - software engineer" />
+    <meta
+      name="twitter:description"
+      content="An unorthodox software engineer who lives to craft world class software applications and mentor students."
+    />
+    <meta
+      name="twitter:image"
+      content="https://firebasestorage.googleapis.com/v0/b/djhemath-site.firebasestorage.app/o/og.png?alt=media&token=ae3ea1f1-7f2b-45d7-9b33-41d40195254f"
+    />
+    <meta name="twitter:site" content="@djhemath" />
+    <meta name="twitter:creator" content="@djhemath" />
+  </head>
+  <body>
+    <main id="home" aria-role="main">
+      <h1 data-section="name">Hey, I'm <%= data.content.name %> <span class="wave">👋</span></h1>
+
+      <p id="about" data-section="bio">
+        <% const words = data.content.bio.split(' ');
+        const highlightedWords = data.content.highlightedWords;
+        for(let i=0; i<words.length; i++) {
+            const highlight = highlightedWords.find(highlightedWord => highlightedWord.position === (i+1));
+            if(highlight) { %>
+                <span class="highlight" style="background-color: <%= highlight.color %>"><%= words[i] %></span>
+            <% } else { %>
+                <%= words[i] %>
+            <% } %>
+        <% } %>
+      </p>
+      <p id="email">
+        You can write me to
+        <a href="mailto:<%= data.content.email %>"><span><%= data.content.email %></span></a>
+      </p>
+
+      <div class="social-links">
+        <% for(let i=0; i < data.content.socials.length; i++) {
+        if(data.content.socials[i].socialMedia === "Github") { %>
+            <div class="social-link effect-shine">
+            <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                d="M12 2.24658C9.6255 2.24668 7.32849 3.0917 5.51999 4.63043C3.71149 6.16916 2.50953 8.3012 2.12916 10.6451C1.74879 12.9889 2.21485 15.3917 3.44393 17.4233C4.67301 19.455 6.58491 20.9831 8.83755 21.7341C9.33755 21.8216 9.52505 21.5216 9.52505 21.2591C9.52505 21.0216 9.51254 20.2341 9.51254 19.3966C7.00003 19.8591 6.35003 18.7841 6.15003 18.2216C5.9281 17.6745 5.5763 17.1897 5.12503 16.8091C4.77503 16.6216 4.27503 16.1591 5.11252 16.1466C5.4323 16.1813 5.73901 16.2926 6.00666 16.471C6.2743 16.6494 6.49499 16.8897 6.65003 17.1716C6.7868 17.4173 6.97071 17.6336 7.19122 17.8081C7.41173 17.9826 7.6645 18.1118 7.93506 18.1885C8.20562 18.2651 8.48864 18.2876 8.76791 18.2547C9.04717 18.2218 9.3172 18.134 9.56251 17.9966C9.6058 17.4882 9.83237 17.0129 10.2 16.6591C7.97503 16.4091 5.65003 15.5466 5.65003 11.7216C5.63597 10.7278 6.00271 9.76619 6.67503 9.03411C6.36931 8.17033 6.40508 7.2224 6.77503 6.38411C6.77503 6.38411 7.6125 6.1216 9.52503 7.40911C11.1613 6.95909 12.8887 6.95909 14.525 7.40911C16.4375 6.10911 17.275 6.38411 17.275 6.38411C17.645 7.22238 17.6808 8.17034 17.375 9.03411C18.0494 9.76494 18.4164 10.7273 18.4 11.7216C18.4 15.5591 16.0625 16.4091 13.8375 16.6591C14.0762 16.901 14.26 17.1914 14.3764 17.5106C14.4929 17.8298 14.5393 18.1704 14.5125 18.5091C14.5125 19.8466 14.5 20.9216 14.5 21.2591C14.5 21.5216 14.6875 21.8341 15.1875 21.7341C17.4362 20.977 19.3426 19.4453 20.5664 17.4126C21.7903 15.3799 22.2519 12.9784 21.8689 10.6368C21.4859 8.29523 20.2832 6.16595 18.4755 4.62909C16.6678 3.09223 14.3727 2.24782 12 2.24658Z"
+                fill="black"
+                />
+            </svg>
+            <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="<%= data.content.socials[i].url %>"
+                >Github</a
+            >
+            </div>
+        <% } else if(data.content.socials[i].socialMedia === "Linkedin") { %>
+        <div class="social-link effect-shine">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20.4701 2.00014H3.53006C3.33964 1.9975 3.15056 2.03239 2.97362 2.10282C2.79669 2.17326 2.63536 2.27786 2.49886 2.41065C2.36235 2.54344 2.25334 2.70182 2.17805 2.87675C2.10276 3.05167 2.06267 3.23972 2.06006 3.43014V20.5701C2.06267 20.7606 2.10276 20.9486 2.17805 21.1235C2.25334 21.2985 2.36235 21.4568 2.49886 21.5896C2.63536 21.7224 2.79669 21.827 2.97362 21.8975C3.15056 21.9679 3.33964 22.0028 3.53006 22.0001H20.4701C20.6605 22.0028 20.8496 21.9679 21.0265 21.8975C21.2034 21.827 21.3648 21.7224 21.5013 21.5896C21.6378 21.4568 21.7468 21.2985 21.8221 21.1235C21.8974 20.9486 21.9375 20.7606 21.9401 20.5701V3.43014C21.9375 3.23972 21.8974 3.05167 21.8221 2.87675C21.7468 2.70182 21.6378 2.54344 21.5013 2.41065C21.3648 2.27786 21.2034 2.17326 21.0265 2.10282C20.8496 2.03239 20.6605 1.9975 20.4701 2.00014ZM8.09006 18.7401H5.09006V9.74014H8.09006V18.7401ZM6.59006 8.48014C6.17632 8.48014 5.77953 8.31578 5.48697 8.02323C5.19442 7.73067 5.03006 7.33388 5.03006 6.92014C5.03006 6.5064 5.19442 6.10961 5.48697 5.81705C5.77953 5.5245 6.17632 5.36014 6.59006 5.36014C6.80975 5.33522 7.03224 5.35699 7.24293 5.42402C7.45363 5.49105 7.6478 5.60183 7.81272 5.7491C7.97763 5.89637 8.10958 6.07682 8.19993 6.27862C8.29028 6.48043 8.33698 6.69904 8.33698 6.92014C8.33698 7.14124 8.29028 7.35985 8.19993 7.56166C8.10958 7.76346 7.97763 7.94391 7.81272 8.09118C7.6478 8.23845 7.45363 8.34923 7.24293 8.41626C7.03224 8.48329 6.80975 8.50505 6.59006 8.48014ZM18.9101 18.7401H15.9101V13.9101C15.9101 12.7001 15.4801 11.9101 14.3901 11.9101C14.0527 11.9126 13.7242 12.0184 13.4489 12.2133C13.1735 12.4082 12.9645 12.6828 12.8501 13.0001C12.7718 13.2352 12.7379 13.4827 12.7501 13.7301V18.7301H9.75006C9.75006 18.7301 9.75006 10.5501 9.75006 9.73014H12.7501V11.0001C13.0226 10.5272 13.419 10.1377 13.8965 9.87334C14.374 9.60902 14.9146 9.47999 15.4601 9.50014C17.4601 9.50014 18.9101 10.7901 18.9101 13.5601V18.7401Z"
+              fill="black"
+            />
+          </svg>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="<%= data.content.socials[i].url %>"
+            >Linkedin</a
+          >
+        </div>
+        <% } else if(data.content.socials[i].socialMedia === "Twitter") { %>
+        <div class="social-link effect-shine">
+          <svg
+            width="24"
+            height="24"
+            xmlns="http://www.w3.org/2000/svg"
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            viewBox="0 0 512 509.64"
+          >
+            <rect width="512" height="509.64" rx="115.61" ry="115.61" />
+            <path
+              fill="#fff"
+              fill-rule="nonzero"
+              d="M323.74 148.35h36.12l-78.91 90.2 92.83 122.73h-72.69l-56.93-74.43-65.15 74.43h-36.14l84.4-96.47-89.05-116.46h74.53l51.46 68.04 59.53-68.04zm-12.68 191.31h20.02l-129.2-170.82H180.4l130.66 170.82z"
+            />
+          </svg>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="<%= data.content.socials[i].url %>"
+            >X / Twitter</a
+          >
+        </div>
+        <% }
+        } %>
+      </div>
+
+      <div class="section">
+        <div class="title">Talks</div>
+
+        <div class="talks">
+            <% for(let i=0; i<data.content.talks.length; i++) {%>
+                <div class="talk">
+                    <div class="left">
+                    <span class="topic"><%= data.content.talks[i].topic %></span>
+                    </div>
+
+                    <div class="divider-rule desktop"></div>
+
+                    <div class="right">
+                    <span class="role"><%= data.content.talks[i].place %></span>
+                    <div class="divider-rule mobile"></div>
+                    <% if(data.content.talks[i].isFutureTalk) { %>
+                        <span class="duration">Coming soon</span>
+                    <% } else { %>
+                        <span class="duration"><%= new Date(data.content.talks[i].date).toISOString().split('T')[0] %></span>
+                    <% } %>
+                    </div>
+                </div>      
+            <% } %>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="title">Toys</div>
+
+        <div class="technologies">
+            <% for(let i=0; i<data.content.technologies.length; i++) {%>
+                <div class="technology">
+                    <img width="25" height="25" src="<%= data.content.technologies[i].image %>" />
+                    <span><%= data.content.technologies[i].name %></span>
+                </div>
+            <% } %>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="title">Projects</div>
+
+        <ul class="projects">
+            <% for(let i=0; i<data.content.projects.length; i++) {%>
+                <li>
+                    <div class="title-description">
+                    <a
+                        href="<%= data.content.projects[i].demoLink %>"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <strong><%= data.content.projects[i].name %></strong>
+                        <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        >
+                        <path
+                            d="M18 10.82C17.7348 10.82 17.4804 10.9254 17.2929 11.1129C17.1054 11.3004 17 11.5548 17 11.82V19C17 19.2652 16.8946 19.5196 16.7071 19.7071C16.5196 19.8946 16.2652 20 16 20H5C4.73478 20 4.48043 19.8946 4.29289 19.7071C4.10536 19.5196 4 19.2652 4 19V8C4 7.73478 4.10536 7.48043 4.29289 7.29289C4.48043 7.10536 4.73478 7 5 7H12.18C12.4452 7 12.6996 6.89464 12.8871 6.70711C13.0746 6.51957 13.18 6.26522 13.18 6C13.18 5.73478 13.0746 5.48043 12.8871 5.29289C12.6996 5.10536 12.4452 5 12.18 5H5C4.20435 5 3.44129 5.31607 2.87868 5.87868C2.31607 6.44129 2 7.20435 2 8V19C2 19.7956 2.31607 20.5587 2.87868 21.1213C3.44129 21.6839 4.20435 22 5 22H16C16.7956 22 17.5587 21.6839 18.1213 21.1213C18.6839 20.5587 19 19.7956 19 19V11.82C19 11.5548 18.8946 11.3004 18.7071 11.1129C18.5196 10.9254 18.2652 10.82 18 10.82ZM21.92 2.62C21.8185 2.37565 21.6243 2.18147 21.38 2.08C21.2598 2.02876 21.1307 2.00158 21 2H15C14.7348 2 14.4804 2.10536 14.2929 2.29289C14.1054 2.48043 14 2.73478 14 3C14 3.26522 14.1054 3.51957 14.2929 3.70711C14.4804 3.89464 14.7348 4 15 4H18.59L8.29 14.29C8.19627 14.383 8.12188 14.4936 8.07111 14.6154C8.02034 14.7373 7.9942 14.868 7.9942 15C7.9942 15.132 8.02034 15.2627 8.07111 15.3846C8.12188 15.5064 8.19627 15.617 8.29 15.71C8.38296 15.8037 8.49356 15.8781 8.61542 15.9289C8.73728 15.9797 8.86799 16.0058 9 16.0058C9.13201 16.0058 9.26272 15.9797 9.38458 15.9289C9.50644 15.8781 9.61704 15.8037 9.71 15.71L20 5.41V9C20 9.26522 20.1054 9.51957 20.2929 9.70711C20.4804 9.89464 20.7348 10 21 10C21.2652 10 21.5196 9.89464 21.7071 9.70711C21.8946 9.51957 22 9.26522 22 9V3C21.9984 2.86932 21.9712 2.74022 21.92 2.62Z"
+                            fill="black"
+                        />
+                        </svg>
+                    </a>
+
+                    <p class="description">
+                        <%= data.content.projects[i].description %>
+                    </p>
+                    </div>
+                </li>
+            <% } %>
+          
+        </ul>
+      </div>
+    </main>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Hemath",
+        "jobTitle": "Software Engineer",
+        "url": "https://hemath.dev",
+        "sameAs": [
+          "https://github.com/djhemath",
+          "https://linkedin.com/in/djhemath",
+          "https://x.com/djhemath"
+        ]
+      }
+    </script>
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-analytics.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyCg_ITJGJDXLlS2rIdeOq1g-Zptd2nKIwI",
+        authDomain: "djhemath-site.firebaseapp.com",
+        projectId: "djhemath-site",
+        storageBucket: "djhemath-site.firebasestorage.app",
+        messagingSenderId: "167148679184",
+        appId: "1:167148679184:web:3c774b706abd2a069b9a95",
+        measurementId: "G-4FXNDZF568",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+    </script>
+  </body>
+</html>

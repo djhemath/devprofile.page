@@ -1,0 +1,86 @@
+{
+      "name": "DJ Hemath",
+      "bio": "I'm a software engineer, space enthusiast and an occasional designer. I love to craft software products that improves people lives. I occasionally teach people some software concepts and guide whenever required.",
+      "email": "hem@hemath.dev",
+      "socials": [
+        {
+          "socialMedia": "Github",
+          "url": "https://github.com/djhemath"
+        },
+        {
+          "socialMedia": "Linkedin",
+          "url": "https://linkedin.com/in/djhemath"
+        },
+        {
+          "socialMedia": "Twitter",
+          "url": "https://x.com/djhemath"
+        }
+      ],
+      "highlightedWords": [
+        {
+          "position": 3,
+          "color": "rgb(192, 234, 243)"
+        },
+        {
+          "position": 4,
+          "color": "rgb(192, 234, 243)"
+        },
+        {
+          "position": 10,
+          "color": "rgb(255, 217, 240)"
+        },
+        {
+          "position": 23,
+          "color": "rgb(222, 255, 217)"
+        }
+      ],
+      "talks": [
+        {
+          "topic": "Accessibility 101",
+          "place": "Comcast",
+          "isFutureTalk": true
+        },
+        {
+          "topic": "A practical intro to WebAssembly",
+          "place": "JS Lovers",
+          "date": 1738434600000
+        },
+        {
+          "topic": "React for beginners",
+          "place": "Sysvine",
+          "date": 1685644200000
+        },
+        {
+          "topic": "Nostr - decentralized social media",
+          "place": "NIT",
+          "date": 1677695400000
+        },
+        {
+          "topic": "GraphQL - deep dive",
+          "place": "ESEC",
+          "date": 1640889000000
+        }
+      ],
+      "technologies": [
+        {
+          "name": "React",
+          "image": "https://static.cdnlogo.com/logos/r/85/react.svg"
+        },
+        {
+          "name": "React",
+          "image": "https://static.cdnlogo.com/logos/r/85/react.svg"
+        }
+      ],
+      "projects": [
+        {
+          "name": "SnapNostr",
+          "description": "Give your Nostr notes a wonderful look it deserves!",
+          "demoLink": "https://snapnostr.app"
+        },
+        {
+          "name": "React comment system",
+          "description": "An easy to configure comment system like Disqus, powered by Firebase",
+          "demoLink": "https://github.com/djhemath/react-comment-system"
+        }
+      ]
+    }
