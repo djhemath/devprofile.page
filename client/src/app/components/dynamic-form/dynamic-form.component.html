@@ -9,6 +9,8 @@
         [formControlName]="field.id"
         [placeholder]="field.placeholder"
         class="input"
+        (focus)="_onFocus(field.id)"
+        (blur)="_onBlur(field.id)"
       />
 
       <textarea
@@ -17,6 +19,8 @@
         [formControlName]="field.id"
         [placeholder]="field.placeholder"
         class="textarea"
+        (focus)="_onFocus(field.id)"
+        (blur)="_onBlur(field.id)"
       ></textarea>
 
       <select
@@ -24,6 +28,8 @@
         [id]="field.id"
         [formControlName]="field.id"
         class="select"
+        (focus)="_onFocus(field.id)"
+        (blur)="_onBlur(field.id)"
       >
         <option *ngFor="let opt of field.options" [value]="opt">{{ opt }}</option>
       </select>
@@ -33,6 +39,8 @@
         type="checkbox"
         [id]="field.id"
         [formControlName]="field.id"
+        (focus)="_onFocus(field.id)"
+        (blur)="_onBlur(field.id)"
       />
     </ng-container>
 

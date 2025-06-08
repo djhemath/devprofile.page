@@ -12,6 +12,8 @@ export class DynamicFormComponent implements OnInit {
   @Input() config: any[] = [];
   @Output() onSave = new EventEmitter();
   @Output() onChange = new EventEmitter();
+  @Output() onFocus = new EventEmitter();
+  @Output() onBlur = new EventEmitter();
 
   form!: FormGroup;
 
@@ -30,6 +32,14 @@ export class DynamicFormComponent implements OnInit {
     this.form = this.fb.group(group);
 
     this.form.valueChanges.subscribe(value => this.onChange.emit(value));
+  }
+
+  _onFocus(controlName: string) {
+    this.onFocus.emit(controlName);
+  }
+
+  _onBlur(controlName: string) {
+    this.onBlur.emit(controlName);
   }
 
   submit() {
