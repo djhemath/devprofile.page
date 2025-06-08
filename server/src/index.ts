@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 
 import authRouter from './auth/auth.router';
+import templateRouter from './features/templates/templates.router';
 import { connectMongo } from './config/mongo';
 import { authNZ } from './middlewares/authnz.middleware';
 
@@ -17,6 +18,7 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, 'templates/djhemath/v1')));
 app.use(cookieParser());
 
 app.use('/oauth', authRouter);
@@ -38,6 +40,8 @@ app.get('/api/session', authNZ(['user'], false), (req, res) => {
     user: req.body.payload,
   });
 });
+
+app.use('/templates', templateRouter);
 
 // Serve frontend
 app.get('/{*splat}', (_, res) => {
