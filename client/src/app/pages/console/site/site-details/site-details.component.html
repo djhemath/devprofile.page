@@ -3,7 +3,11 @@
         [config]="formConfig"
         (onSave)="onSave($event)"
         (onChange)="onChange($event)"
+        (onFocus)="onFocus($event)"
+        (onBlur)="onBlur($event)"
     ></app-dynamic-form>
 
-    <div id="preview" [innerHTML]="previewHtml"></div>
+    <div id="preview">
+        <iframe #previewIframe></iframe>
+    </div>
 </section>
