@@ -20,7 +20,7 @@ RUN npm install -g typescript
 RUN npm run build
 
 # Copy Angular build to backend's public folder
-COPY --from=build-client /app/client/dist/devprofile-client/browser ./public/
+COPY --from=build-client /app/client/dist/devprofile-client ./public/
 
 EXPOSE 3000
 CMD ["node", "dist/index.js"]
