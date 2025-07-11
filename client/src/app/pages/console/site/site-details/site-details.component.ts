@@ -4,6 +4,7 @@ import * as ejs from 'ejs';
 
 import { DynamicFormComponent } from '../../../../components/dynamic-form/dynamic-form.component';
 import { CommonModule } from '@angular/common';
+import { environment } from '../../../../../environments/environment';
 
 const temporaryStyles = [
   `.devprofilepage-field-highlight {outline: 2px dashed #38bdf8;}`,
@@ -142,7 +143,7 @@ export class SiteDetailsComponent implements AfterViewInit {
 
   async ngAfterViewInit(): Promise<void> {
     try {
-      const response = await fetch('http://localhost:3000/templates/info/djhemath/v1')
+      const response = await fetch(`${environment.apiBaseUrl}/templates/info/djhemath/v1`)
       const templateResponse = await response.json();
 
       this.template = templateResponse.files['home.ejs'];
