@@ -49,25 +49,7 @@ export class SiteDetailsComponent implements AfterViewInit {
 
   styles: string[] = [];
 
-  formConfig = [
-    {
-      "id": "name",
-      "label": "Name",
-      "type": "text",
-      "placeholder": "Enter your full name",
-      "defaultValue": "DJ Hemath",
-      "required": true,
-      "helpText": "Shown in the browser tab and SEO title"
-    },
-    {
-      "id": "bio",
-      "label": "Bio",
-      "type": "textarea",
-      "placeholder": "Tell us about yourself",
-      "defaultValue": "I'm a software engineer, space enthusiast and an occasional designer. I love to craft software products that improves people lives. I occasionally teach people some software concepts and guide whenever required.",
-      "required": false
-    },
-  ]
+  formConfig = []
 
   data: any = {
       "name": "DJ Hemath",
@@ -236,11 +218,11 @@ export class SiteDetailsComponent implements AfterViewInit {
 
   onSave(data: any) {
     this.data = data;
-    this.render();
+    // this.render();
   }
 
   onChange(data: any) {
     this.data = {...this.data, ...data};
-    this.render();
+    // this.render();
   }
 }

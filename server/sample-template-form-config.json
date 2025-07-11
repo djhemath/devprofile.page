@@ -1,0 +1,349 @@
+[
+  {
+    "id": "text",
+    "label": "Text Field",
+    "type": "text",
+    "placeholder": "Enter some text",
+    "defaultValue": "Some text",
+    "required": true,
+    "helpText": "Shown in the browser tab and SEO title"
+  },
+  {
+    "id": "textarea",
+    "label": "Textarea",
+    "type": "textarea",
+    "placeholder": "textarea",
+    "defaultValue": "textarea",
+    "required": true
+  },
+  {
+    "id": "number",
+    "label": "Number",
+    "type": "number",
+    "placeholder": "Number",
+    "defaultValue": 56.6,
+    "required": true
+  },
+  {
+    "id": "email",
+    "label": "Email",
+    "type": "email",
+    "placeholder": "Enter your email",
+    "defaultValue": "djhemath@gmail.com",
+    "required": true
+  },
+  {
+    "id": "url",
+    "label": "URL",
+    "type": "url",
+    "placeholder": "URL",
+    "defaultValue": "https://hemath.dev",
+    "required": true
+  },
+  {
+    "id": "date",
+    "label": "Date",
+    "type": "date",
+    "placeholder": "Date",
+    "defaultValue": "2025-03-11T06:12:54.857Z",
+    "required": true
+  },
+  {
+    "id": "file",
+    "label": "File",
+    "type": "file",
+    "placeholder": "File",
+    "required": true
+  },
+  {
+    "id": "color",
+    "label": "Color",
+    "type": "color",
+    "placeholder": "Color",
+    "defaultValue": "#FF00E1",
+    "required": true
+  },
+  {
+    "id": "dropdown-single",
+    "label": "Dropdown Single",
+    "type": "dropdown-single",
+    "placeholder": "Dropdown single",
+    "defaultValue": "mango",
+    "options": [
+      {
+        "id": "apple",
+        "label": "Apple"
+      },
+      {
+        "id": "orange",
+        "label": "Orange"
+      },
+      {
+        "id": "mango",
+        "label": "Mango"
+      }
+    ],
+    "required": true
+  },
+  {
+    "id": "dropdown-multiple",
+    "label": "Dropdown Multiple",
+    "type": "dropdown-multiple",
+    "placeholder": "Dropdown multiple",
+    "defaultValue": ["apple", "mango"],
+    "options": [
+      {
+        "id": "apple",
+        "label": "Apple"
+      },
+      {
+        "id": "orange",
+        "label": "Orange"
+      },
+      {
+        "id": "mango",
+        "label": "Mango"
+      }
+    ],
+    "required": true
+  },
+  {
+    "id": "checkbox-1",
+    "label": "Checkbox 1",
+    "type": "checkbox",
+    "placeholder": "Checkbox 2",
+    "defaultValue": false,
+    "required": true
+  },
+  {
+    "id": "checkbox-2",
+    "label": "Checkbox 2",
+    "type": "checkbox",
+    "placeholder": "Checkbox 2",
+    "defaultValue": true,
+    "required": true
+  },
+  {
+    "id": "radio-group-1",
+    "label": "Radio Group 1",
+    "type": "radio-group",
+    "placeholder": "Radio group 1",
+    "defaultValue": "radio-3",
+    "required": true,
+    "options": [
+      {
+        "id": "radio-1",
+        "label": "Radio 1"
+      },
+      {
+        "id": "radio-2",
+        "label": "Radio 2"
+      },
+      {
+        "id": "radio-3",
+        "label": "Radio 3"
+      }
+    ]
+  },
+  {
+    "id": "radio-group-2",
+    "label": "Radio Group 2",
+    "type": "radio-group",
+    "placeholder": "Radio group 2",
+    "defaultValue": "radio-5",
+    "required": true,
+    "options": [
+      {
+        "id": "radio-4",
+        "label": "Radio 4"
+      },
+      {
+        "id": "radio-5",
+        "label": "Radio 5"
+      },
+      {
+        "id": "radio-6",
+        "label": "Radio 6"
+      }
+    ]
+  },
+  {
+    "id": "socials",
+    "label": "Socials",
+    "type": "repeatableGroup",
+    "singlularLabel": "Social",
+    "minItems": 0,
+    "maxItems": 3,
+    "helpText": "Add your social media accounts",
+    "fields": [
+      {
+        "id": "text",
+        "label": "Text Field",
+        "type": "text",
+        "placeholder": "Enter some text",
+        "defaultValue": "Some text",
+        "required": true,
+        "helpText": "Shown in the browser tab and SEO title"
+      },
+      {
+        "id": "textarea",
+        "label": "Textarea",
+        "type": "textarea",
+        "placeholder": "textarea",
+        "defaultValue": "textarea",
+        "required": true
+      },
+      {
+        "id": "number",
+        "label": "Number",
+        "type": "number",
+        "placeholder": "Number",
+        "defaultValue": 56.6,
+        "required": true
+      },
+      {
+        "id": "email",
+        "label": "Email",
+        "type": "email",
+        "placeholder": "Enter your email",
+        "defaultValue": "djhemath@gmail.com",
+        "required": true
+      },
+      {
+        "id": "url",
+        "label": "URL",
+        "type": "url",
+        "placeholder": "URL",
+        "defaultValue": "https://hemath.dev",
+        "required": true
+      },
+      {
+        "id": "date",
+        "label": "Date",
+        "type": "date",
+        "placeholder": "Date",
+        "defaultValue": "2025-03-11T06:12:54.857Z",
+        "required": true
+      },
+      {
+        "id": "file",
+        "label": "File",
+        "type": "file",
+        "placeholder": "File",
+        "required": true
+      },
+      {
+        "id": "color",
+        "label": "Color",
+        "type": "color",
+        "placeholder": "Color",
+        "defaultValue": "#FF00E1",
+        "required": true
+      },
+      {
+        "id": "dropdown-single",
+        "label": "Dropdown Single",
+        "type": "dropdown-single",
+        "placeholder": "Dropdown single",
+        "defaultValue": "mango",
+        "options": [
+          {
+            "id": "apple",
+            "label": "Apple"
+          },
+          {
+            "id": "orange",
+            "label": "Orange"
+          },
+          {
+            "id": "mango",
+            "label": "Mango"
+          }
+        ],
+        "required": true
+      },
+      {
+        "id": "dropdown-multiple",
+        "label": "Dropdown Multiple",
+        "type": "dropdown-multiple",
+        "placeholder": "Dropdown multiple",
+        "defaultValue": ["apple", "mango"],
+        "options": [
+          {
+            "id": "apple",
+            "label": "Apple"
+          },
+          {
+            "id": "orange",
+            "label": "Orange"
+          },
+          {
+            "id": "mango",
+            "label": "Mango"
+          }
+        ],
+        "required": true
+      },
+      {
+        "id": "checkbox-1",
+        "label": "Checkbox 1",
+        "type": "checkbox",
+        "placeholder": "Checkbox 2",
+        "defaultValue": false,
+        "required": true
+      },
+      {
+        "id": "checkbox-2",
+        "label": "Checkbox 2",
+        "type": "checkbox",
+        "placeholder": "Checkbox 2",
+        "defaultValue": true,
+        "required": true
+      },
+      {
+        "id": "radio-group-1",
+        "label": "Radio Group 1",
+        "type": "radio-group",
+        "placeholder": "Radio group 1",
+        "defaultValue": "radio-3",
+        "required": true,
+        "options": [
+          {
+            "id": "radio-1",
+            "label": "Radio 1"
+          },
+          {
+            "id": "radio-2",
+            "label": "Radio 2"
+          },
+          {
+            "id": "radio-3",
+            "label": "Radio 3"
+          }
+        ]
+      },
+      {
+        "id": "radio-group-2",
+        "label": "Radio Group 2",
+        "type": "radio-group",
+        "placeholder": "Radio group 2",
+        "defaultValue": "radio-5",
+        "required": true,
+        "options": [
+          {
+            "id": "radio-4",
+            "label": "Radio 4"
+          },
+          {
+            "id": "radio-5",
+            "label": "Radio 5"
+          },
+          {
+            "id": "radio-6",
+            "label": "Radio 6"
+          }
+        ]
+      }
+    ]
+  }
+]

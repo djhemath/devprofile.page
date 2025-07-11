@@ -1,0 +1,44 @@
+.dynamic-form {
+  /* form wrapper */
+}
+
+.form-field-wrapper {
+  margin-bottom: 1.5rem;
+}
+
+.repeatable-group-header {
+  margin-bottom: 0.5rem;
+}
+
+.group-label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.group-help-text {
+  font-size: 0.875rem;
+  color: gray;
+  margin-bottom: 1rem;
+}
+
+.repeatable-group-list {
+  /* container for formArray items */
+}
+
+.repeatable-group-item {
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.add-group-button,
+.remove-group-button {
+  /* customize buttons */
+  margin-top: 0.5rem;
+}
+
+.submit-button {
+  margin-top: 2rem;
+}

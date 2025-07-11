@@ -1,51 +1,65 @@
-<form [formGroup]="form" (ngSubmit)="submit()">
-  <div *ngFor="let field of config" class="mb-4">
-    <label [for]="field.id" class="block font-bold mb-1">{{ field.label }}</label>
-
-    <ng-container [ngSwitch]="field.type">
-      <input
-        *ngSwitchCase="'text'"
-        [id]="field.id"
-        [formControlName]="field.id"
-        [placeholder]="field.placeholder"
-        class="input"
-        (focus)="_onFocus(field.id)"
-        (blur)="_onBlur(field.id)"
-      />
-
-      <textarea
-        *ngSwitchCase="'textarea'"
-        [id]="field.id"
-        [formControlName]="field.id"
-        [placeholder]="field.placeholder"
-        class="textarea"
-        (focus)="_onFocus(field.id)"
-        (blur)="_onBlur(field.id)"
-      ></textarea>
-
-      <select
-        *ngSwitchCase="'select'"
-        [id]="field.id"
-        [formControlName]="field.id"
-        class="select"
-        (focus)="_onFocus(field.id)"
-        (blur)="_onBlur(field.id)"
-      >
-        <option *ngFor="let opt of field.options" [value]="opt">{{ opt }}</option>
-      </select>
-
-      <input
-        *ngSwitchCase="'checkbox'"
-        type="checkbox"
-        [id]="field.id"
-        [formControlName]="field.id"
-        (focus)="_onFocus(field.id)"
-        (blur)="_onBlur(field.id)"
-      />
+<form *ngIf="form" [formGroup]="form" (ngSubmit)="submit()" class="dynamic-form">
+  <div *ngFor="let field of _config" class="form-field-wrapper">
+    <!-- Non-repeatable fields -->
+    <ng-container *ngIf="field.type !== 'repeatableGroup'; else repeatableGroupBlock">
+      <app-dynamic-form-field
+        [field]="field"
+        [form]="form"
+        (onFocus)="onControlFocus($event)"
+        (onBlur)="onControlBlur($event)"
+        (onFileChange)="onFileChange($event)"
+      ></app-dynamic-form-field>
     </ng-container>
 
-    <small *ngIf="field.helpText" class="text-gray-500">{{ field.helpText }}</small>
+    <!-- Repeatable group block -->
+    <ng-template #repeatableGroupBlock>
+      <ng-container *ngIf="isRepeatableGroup(field)">
+        <ng-container *ngIf="field as repeatField">
+          <div class="repeatable-group-header">
+            <label class="group-label">{{ repeatField.label }}</label>
+            <p class="group-help-text">{{ repeatField.helpText }}</p>
+          </div>
+
+          <div [formArrayName]="repeatField.id" class="repeatable-group-list">
+            <div
+              *ngFor="let group of getFormArrayControls(repeatField.id); let i = index"
+              [formGroupName]="i"
+              class="repeatable-group-item"
+            >
+              <ng-container *ngFor="let childField of repeatField.fields">
+                <app-dynamic-form-field
+                  [field]="childField"
+                  [form]="group"
+                  (onFocus)="onControlFocus($event)"
+                  (onBlur)="onControlBlur($event)"
+                  (onFileChange)="onFileChange($event, i, repeatField.id)"
+                ></app-dynamic-form-field>
+              </ng-container>
+
+              <button
+                type="button"
+                class="remove-group-button"
+                (click)="removeGroup(repeatField.id, i)"
+              >
+                Remove {{ repeatField.singlularLabel || 'Item' }}
+              </button>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            class="add-group-button"
+            (click)="addGroup(repeatField)"
+            [disabled]="isMaxReached(repeatField.id, repeatField.maxItems)"
+          >
+            Add {{ repeatField.singlularLabel || 'Item' }}
+          </button>
+        </ng-container>
+      </ng-container>
+    </ng-template>
   </div>
 
-  <button type="submit" class="btn-primary">Save</button>
+  <button type="submit" class="submit-button">
+    Submit
+  </button>
 </form>
