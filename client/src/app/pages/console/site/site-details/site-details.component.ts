@@ -6,6 +6,7 @@ import { DynamicFormComponent } from '../../../../components/dynamic-form/dynami
 import { CommonModule } from '@angular/common';
 import { environment } from '../../../../../environments/environment';
 import { escapeXML } from 'ejs';
+import { convertFilesToDataURIs } from '../../../../shared/utils/file.util';
 
 const temporaryStyles = [
   `.devprofilepage-field-highlight {outline: 2px dashed #38bdf8;}`,
@@ -127,6 +128,9 @@ export class SiteDetailsComponent implements AfterViewInit {
         }
       ]
     };
+  
+  // This is the original data that has raw File objects
+  originalData = {}
 
   constructor() { }
 
@@ -206,13 +210,17 @@ export class SiteDetailsComponent implements AfterViewInit {
     }
   }
 
-  onSave(data: any) {
-    this.data = data;
+  async onSave(data: any) {
+    this.originalData = data;
+
+    this.data = await convertFilesToDataURIs(data);
     this.render();
   }
 
-  onChange(data: any) {
-    this.data = {...this.data, ...data};
+  async onChange(data: any) {
+    this.originalData = data;
+
+    this.data = await convertFilesToDataURIs({...this.data, ...data});
     this.render();
   }
 }
