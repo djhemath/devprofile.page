@@ -12,6 +12,7 @@ import {
 
 import { DynamicFormFieldComponent } from '../dynamic-form-field/dynamic-form-field.component';
 import { Field, FormSchema, RepeatableGroupField } from './dynamic-form.types';
+import { formatDateToYMD } from '../../shared/utils/date.util';
 
 @Component({
   selector: 'app-dynamic-form',
@@ -97,11 +98,7 @@ export class DynamicFormComponent {
   private getDefaultValue(field: Field): any {
     if ('defaultValue' in field && field.defaultValue !== undefined) {
       if (field.type === 'date') {
-        const date = new Date(field.defaultValue);
-        return `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date
-          .getDate()
-          .toString()
-          .padStart(2, '0')}`;
+        return formatDateToYMD(field.defaultValue);
       }
       return field.defaultValue;
     }
@@ -218,25 +215,38 @@ export class DynamicFormComponent {
 
     Object.keys(data).forEach(key => {
       const control = this.form!.get(key);
+      const fieldConfig = this._config.find(f => f.id === key);
 
-      if (control instanceof FormArray && Array.isArray(data[key])) {
+      if (control instanceof FormArray && Array.isArray(data[key]) && fieldConfig && fieldConfig.type === 'repeatableGroup') {
         const arrayData = data[key];
         while (control.length < arrayData.length) {
-          // Find the field config for this FormArray
-          const fieldConfig = this._config.find(f => f.id === key && f.type === 'repeatableGroup') as RepeatableGroupField;
-          if (fieldConfig) {
+          const repeatFieldConfig = fieldConfig as RepeatableGroupField;
+          if (repeatFieldConfig) {
             const group = this.fb.group({});
-            fieldConfig.fields.forEach(f => group.addControl(f.id, this.createControl(f)));
+            repeatFieldConfig.fields.forEach(f => group.addControl(f.id, this.createControl(f)));
             control.push(group);
           }
         }
-
         // Patch each group
         arrayData.forEach((item: any, idx: number) => {
-          (control.at(idx) as FormGroup).patchValue(item);
+          const groupConfig = (fieldConfig as RepeatableGroupField).fields;
+          const patchedItem: Record<string, any> = {};
+          Object.keys(item).forEach(childKey => {
+            const childField = groupConfig.find(f => f.id === childKey);
+            if (childField && childField.type === 'date') {
+              patchedItem[childKey] = formatDateToYMD(item[childKey]);
+            } else {
+              patchedItem[childKey] = item[childKey];
+            }
+          });
+          (control.at(idx) as FormGroup).patchValue(patchedItem);
         });
-      } else if (control) {
-        control.patchValue(data[key]);
+      } else if (control && fieldConfig) {
+        let value = data[key];
+        if (fieldConfig.type === 'date') {
+          value = formatDateToYMD(value);
+        }
+        control.patchValue(value);
       }
     });
   }
