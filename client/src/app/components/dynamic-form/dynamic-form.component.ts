@@ -92,6 +92,37 @@ export class DynamicFormComponent {
       ));
     }
 
+    // File field custom validators
+    if (field.type === 'file') {
+      if (field.maxSize) {
+        validators.push((control: import('@angular/forms').AbstractControl) => {
+          const file = control.value;
+          if (file && file.size > field.maxSize!) {
+            return { maxSize: true };
+          }
+          return null;
+        });
+      }
+      if (field.minSize) {
+        validators.push((control: import('@angular/forms').AbstractControl) => {
+          const file = control.value;
+          if (file && file.size < field.minSize!) {
+            return { minSize: true };
+          }
+          return null;
+        });
+      }
+      if (field.allowedTypes && field.allowedTypes.length > 0) {
+        validators.push((control: import('@angular/forms').AbstractControl) => {
+          const file = control.value;
+          if (file && !field.allowedTypes!.includes(file.type)) {
+            return { allowedTypes: true };
+          }
+          return null;
+        });
+      }
+    }
+
     return validators;
   }
 

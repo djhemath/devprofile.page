@@ -14,7 +14,11 @@ export type NumberField = BaseField<"number", number>;
 export type EmailField = BaseField<"email", string>;
 export type URLField = BaseField<"url", string>;
 export type DateField = BaseField<"date", string>; // ISO string
-export type FileField = BaseField<"file">;
+export type FileField = BaseField<"file"> & {
+  maxSize?: number; // in bytes
+  minSize?: number; // in bytes
+  allowedTypes?: string[]; // e.g. ['image/png', 'application/pdf']
+};
 export type ColorField = BaseField<"color", string>; // Hex value
 
 export type Option = {

@@ -29,4 +29,12 @@ export class DynamicFormFieldComponent {
       event, controlName,
     });
   }
+
+  get fileAccept(): string {
+    if("allowedTypes" in this.field && Array.isArray(this.field.allowedTypes) && this.field.allowedTypes.length > 0) {
+      return this.field.allowedTypes.join(',');
+    }
+
+    return "";
+  }
 }

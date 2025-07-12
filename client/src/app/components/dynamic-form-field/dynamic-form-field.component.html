@@ -81,6 +81,7 @@
       type="file"
       class="form-input"
       [id]="field.id"
+      [accept]="fileAccept"
       (change)="_onFileChange($event, field.id)"
       (focus)="_onFocus(field.id)"
       (blur)="_onBlur(field.id)"
@@ -160,5 +161,8 @@
     <div *ngIf="form.get(field.id)?.errors?.['required']">This field is required.</div>
     <div *ngIf="form.get(field.id)?.errors?.['email']">Please enter a valid email address.</div>
     <div *ngIf="form.get(field.id)?.errors?.['url'] || form.get(field.id)?.errors?.['pattern']">Please enter a valid URL.</div>
+    <div *ngIf="form.get(field.id)?.errors?.['maxSize']">File is too large.</div>
+    <div *ngIf="form.get(field.id)?.errors?.['minSize']">File is too small.</div>
+    <div *ngIf="form.get(field.id)?.errors?.['allowedTypes']">Invalid file type.</div>
   </div>
 </div>

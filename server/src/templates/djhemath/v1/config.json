@@ -164,6 +164,7 @@
         "id": "image",
         "label": "Image",
         "type": "file",
+        "allowedTypes": ["image/*"],
         "required": false,
         "helpText": "Image of the technology. Use PNG with transparent backgrounds to make it look good"
       }
