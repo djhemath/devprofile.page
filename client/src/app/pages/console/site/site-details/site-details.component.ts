@@ -5,6 +5,7 @@ import * as ejs from 'ejs';
 import { DynamicFormComponent } from '../../../../components/dynamic-form/dynamic-form.component';
 import { CommonModule } from '@angular/common';
 import { environment } from '../../../../../environments/environment';
+import { escapeXML } from 'ejs';
 
 const temporaryStyles = [
   `.devprofilepage-field-highlight {outline: 2px dashed #38bdf8;}`,
@@ -168,7 +169,7 @@ export class SiteDetailsComponent implements AfterViewInit {
 
   render() {
     const fn = ejs.compile(this.template, {client: true});
-    const compiled = fn({data: {content: this.data, meta: {title: "DJ Hemath - Software engineer"}}}, undefined, (path, d) => {
+    const compiled = fn({data: {content: this.data, meta: {title: "DJ Hemath - Software engineer"}}}, escapeXML, (path, d) => {
       return ejs.render(this.components[path], {content: this.data, ...d});
     });
 
