@@ -175,7 +175,14 @@
                     <% if(data.content.talks[i].isFutureTalk) { %>
                         <span class="duration">Coming soon</span>
                     <% } else { %>
-                        <span class="duration"><%= new Date(data.content.talks[i].date).toISOString().split('T')[0] %></span>
+                        <% 
+                          const talkDate = data.content.talks[i].date;
+                          let formattedDate = '';
+                          if (talkDate && !isNaN(new Date(talkDate).getTime())) {
+                            formattedDate = new Date(talkDate).toISOString().split('T')[0];
+                          }
+                        %>
+                        <span class="duration"><%= formattedDate || 'Unknown date' %></span>
                     <% } %>
                     </div>
                 </div>      
