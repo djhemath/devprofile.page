@@ -91,11 +91,20 @@
       {
         "id": "socialMedia",
         "label": "Social media",
-        "type": "dropdown",
+        "type": "dropdown-single",
         "options": [
-          "Github",
-          "Linkedin",
-          "Twitter"
+          {
+            "id": "github",
+            "label": "Github"
+          },
+          {
+            "id": "linkedin",
+            "label": "Linkedin"
+          },
+          {
+            "id": "twitter",
+            "label": "Twitter"
+          }
         ],
         "required": true
       },

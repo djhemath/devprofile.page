@@ -46,15 +46,15 @@ export class SiteDetailsComponent implements AfterViewInit {
       "email": "hem@hemath.dev",
       "socials": [
         {
-          "socialMedia": "Github",
+          "socialMedia": "github",
           "url": "https://github.com/djhemath"
         },
         {
-          "socialMedia": "Linkedin",
+          "socialMedia": "linkedin",
           "url": "https://linkedin.com/in/djhemath"
         },
         {
-          "socialMedia": "Twitter",
+          "socialMedia": "twitter",
           "url": "https://x.com/djhemath"
         }
       ],
