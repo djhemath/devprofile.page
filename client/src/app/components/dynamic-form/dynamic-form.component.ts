@@ -24,6 +24,7 @@ import { formatDateToYMD } from '../../shared/utils/date.util';
 export class DynamicFormComponent {
   public _config: FormSchema = [];
   private _formData: Record<string, any> | null = null;
+  private suppressChange = false;
 
   @Input()
   set config(value: FormSchema) {
@@ -56,9 +57,15 @@ export class DynamicFormComponent {
 
     this.form = this.fb.group(group);
     if (this._formData) {
+      this.suppressChange = true;
       this.patchFormValues(this._formData);
+      this.suppressChange = false;
     }
-    this.form.valueChanges.subscribe(value => this.onChange.emit(value));
+    this.form.valueChanges.subscribe(value => {
+      if (!this.suppressChange) {
+        this.onChange.emit(value);
+      }
+    });
   }
 
   private buildRepeatableArray(field: RepeatableGroupField): FormArray {
@@ -247,6 +254,7 @@ export class DynamicFormComponent {
    */
   private patchFormValues(data: Record<string, any>): void {
     if (!this.form) return;
+    this.suppressChange = true;
 
     Object.keys(data).forEach(fieldId => {
       const formControl = this.form!.get(fieldId);
@@ -278,6 +286,7 @@ export class DynamicFormComponent {
         formControl.patchValue(value);
       }
     });
+    this.suppressChange = false;
   }
 
   /**
