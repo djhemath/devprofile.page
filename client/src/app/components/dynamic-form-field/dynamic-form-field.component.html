@@ -1,6 +1,7 @@
 <div class="form-control" [formGroup]="form">
   <label [for]="field.id" class="form-label">
-    {{ field.label }}
+    <span class="label-text">{{ field.label }}</span>
+    <span *ngIf="field.required" class="label-asterik">*</span>
   </label>
 
   <ng-container [ngSwitch]="field.type">
@@ -153,4 +154,11 @@
       </label>
     </div>
   </ng-container>
+
+  <!-- Validation Errors -->
+  <div class="form-errors" *ngIf="form.get(field.id)?.invalid && (form.get(field.id)?.dirty || form.get(field.id)?.touched)">
+    <div *ngIf="form.get(field.id)?.errors?.['required']">This field is required.</div>
+    <div *ngIf="form.get(field.id)?.errors?.['email']">Please enter a valid email address.</div>
+    <div *ngIf="form.get(field.id)?.errors?.['url'] || form.get(field.id)?.errors?.['pattern']">Please enter a valid URL.</div>
+  </div>
 </div>

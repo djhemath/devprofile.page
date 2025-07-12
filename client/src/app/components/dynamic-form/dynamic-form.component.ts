@@ -185,7 +185,21 @@ export class DynamicFormComponent {
       console.log('Submitted:', this.form.value);
       this.onSave.emit(this.form.value);
     } else {
+      // Mark all controls as touched to trigger validation errors
+      if (this.form) {
+        this.markAllControlsAsTouched(this.form);
+      }
       console.warn('Form is invalid');
     }
+  }
+
+  private markAllControlsAsTouched(formGroup: FormGroup | FormArray) {
+    Object.values(formGroup.controls).forEach(control => {
+      if (control instanceof FormGroup || control instanceof FormArray) {
+        this.markAllControlsAsTouched(control);
+      } else {
+        control.markAsTouched();
+      }
+    });
   }
 }
