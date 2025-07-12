@@ -210,44 +210,79 @@ export class DynamicFormComponent {
     });
   }
 
-  private patchFormValues(data: Record<string, any>) {
+  /**
+   * Patches the reactive form with provided data.
+   * Supports both simple fields and repeatable group fields (FormArray of FormGroups).
+   */
+  private patchFormValues(data: Record<string, any>): void {
     if (!this.form) return;
 
-    Object.keys(data).forEach(key => {
-      const control = this.form!.get(key);
-      const fieldConfig = this._config.find(f => f.id === key);
+    Object.keys(data).forEach(fieldId => {
+      const formControl = this.form!.get(fieldId);
+      const fieldDefinition = this._config.find(f => f.id === fieldId);
 
-      if (control instanceof FormArray && Array.isArray(data[key]) && fieldConfig && fieldConfig.type === 'repeatableGroup') {
-        const arrayData = data[key];
-        while (control.length < arrayData.length) {
-          const repeatFieldConfig = fieldConfig as RepeatableGroupField;
-          if (repeatFieldConfig) {
-            const group = this.fb.group({});
-            repeatFieldConfig.fields.forEach(f => group.addControl(f.id, this.createControl(f)));
-            control.push(group);
-          }
-        }
-        // Patch each group
-        arrayData.forEach((item: any, idx: number) => {
-          const groupConfig = (fieldConfig as RepeatableGroupField).fields;
-          const patchedItem: Record<string, any> = {};
-          Object.keys(item).forEach(childKey => {
-            const childField = groupConfig.find(f => f.id === childKey);
-            if (childField && childField.type === 'date') {
-              patchedItem[childKey] = formatDateToYMD(item[childKey]);
-            } else {
-              patchedItem[childKey] = item[childKey];
-            }
-          });
-          (control.at(idx) as FormGroup).patchValue(patchedItem);
-        });
-      } else if (control && fieldConfig) {
-        let value = data[key];
-        if (fieldConfig.type === 'date') {
+      // Handle repeatable group fields
+      if (
+        formControl instanceof FormArray &&
+        Array.isArray(data[fieldId]) &&
+        fieldDefinition?.type === 'repeatableGroup'
+      ) {
+        this.patchRepeatableGroupField(
+          formControl,
+          data[fieldId],
+          fieldDefinition as RepeatableGroupField
+        );
+        return;
+      }
+
+      // Handle regular fields
+      if (formControl && fieldDefinition) {
+        let value = data[fieldId];
+
+        // Format date fields to 'yyyy-MM-dd'
+        if (fieldDefinition.type === 'date') {
           value = formatDateToYMD(value);
         }
-        control.patchValue(value);
+
+        formControl.patchValue(value);
       }
+    });
+  }
+
+  /**
+   * Patches a repeatable group field (FormArray of FormGroups).
+   */
+  private patchRepeatableGroupField(
+    formArray: FormArray,
+    items: any[],
+    groupFieldDef: RepeatableGroupField
+  ): void {
+    // Ensure FormArray has the correct number of groups
+    while (formArray.length < items.length) {
+      const group = this.fb.group({});
+      groupFieldDef.fields.forEach(field => {
+        group.addControl(field.id, this.createControl(field));
+      });
+      formArray.push(group);
+    }
+
+    // Patch each FormGroup inside the FormArray
+    items.forEach((item, index) => {
+      const groupFields = groupFieldDef.fields;
+      const patchedGroupValue: Record<string, any> = {};
+
+      Object.keys(item).forEach(childKey => {
+        const childFieldDef = groupFields.find(f => f.id === childKey);
+
+        if (childFieldDef?.type === 'date') {
+          patchedGroupValue[childKey] = formatDateToYMD(item[childKey]);
+        } else {
+          patchedGroupValue[childKey] = item[childKey];
+        }
+      });
+
+      const group = formArray.at(index) as FormGroup;
+      group.patchValue(patchedGroupValue);
     });
   }
 }
