@@ -1,6 +1,7 @@
 <section class="site-detail">
     <app-dynamic-form
         [config]="formConfig"
+        [formData]="data"
         (onSave)="onSave($event)"
         (onChange)="onChange($event)"
         (onFocus)="onFocus($event)"

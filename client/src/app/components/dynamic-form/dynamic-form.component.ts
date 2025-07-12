@@ -22,6 +22,7 @@ import { Field, FormSchema, RepeatableGroupField } from './dynamic-form.types';
 })
 export class DynamicFormComponent {
   public _config: FormSchema = [];
+  private _formData: Record<string, any> | null = null;
 
   @Input()
   set config(value: FormSchema) {
@@ -30,6 +31,12 @@ export class DynamicFormComponent {
   }
 
   @Input() form?: FormGroup;
+  @Input() set formData(value: Record<string, any> | null) {
+    this._formData = value;
+    if (value && this.form) {
+      this.patchFormValues(value);
+    }
+  }
   @Output() onSave = new EventEmitter<Record<string, any>>();
   @Output() onChange = new EventEmitter<Record<string, any>>();
   @Output() onFocus = new EventEmitter<string>();
@@ -47,6 +54,9 @@ export class DynamicFormComponent {
     });
 
     this.form = this.fb.group(group);
+    if (this._formData) {
+      this.patchFormValues(this._formData);
+    }
     this.form.valueChanges.subscribe(value => this.onChange.emit(value));
   }
 
@@ -199,6 +209,34 @@ export class DynamicFormComponent {
         this.markAllControlsAsTouched(control);
       } else {
         control.markAsTouched();
+      }
+    });
+  }
+
+  private patchFormValues(data: Record<string, any>) {
+    if (!this.form) return;
+
+    Object.keys(data).forEach(key => {
+      const control = this.form!.get(key);
+
+      if (control instanceof FormArray && Array.isArray(data[key])) {
+        const arrayData = data[key];
+        while (control.length < arrayData.length) {
+          // Find the field config for this FormArray
+          const fieldConfig = this._config.find(f => f.id === key && f.type === 'repeatableGroup') as RepeatableGroupField;
+          if (fieldConfig) {
+            const group = this.fb.group({});
+            fieldConfig.fields.forEach(f => group.addControl(f.id, this.createControl(f)));
+            control.push(group);
+          }
+        }
+
+        // Patch each group
+        arrayData.forEach((item: any, idx: number) => {
+          (control.at(idx) as FormGroup).patchValue(item);
+        });
+      } else if (control) {
+        control.patchValue(data[key]);
       }
     });
   }

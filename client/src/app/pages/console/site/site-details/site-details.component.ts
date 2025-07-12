@@ -23,21 +23,9 @@ export class SiteDetailsComponent implements AfterViewInit {
     <html>
       <head>
         <style>
-          body {
-            background-color: white;
-          }
-          .highlight {
-            outline: 2px dashed #38bdf8;
-          }
         </style>
       </head>
       <body>
-        <div data-section="name">
-          <h1><%= content.name %></h1>
-        </div>
-        <div style="margin-top: 100vh" data-section="bio">
-          <p><%= content.bio %></p>
-        </div>
       </body>
     </html>
   `;
@@ -219,11 +207,11 @@ export class SiteDetailsComponent implements AfterViewInit {
 
   onSave(data: any) {
     this.data = data;
-    // this.render();
+    this.render();
   }
 
   onChange(data: any) {
     this.data = {...this.data, ...data};
-    // this.render();
+    this.render();
   }
 }
