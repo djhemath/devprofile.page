@@ -61,19 +61,19 @@ export class SiteDetailsComponent implements AfterViewInit {
       "highlightedWords": [
         {
           "position": 3,
-          "color": "rgb(192, 234, 243)"
+          "color": "#c0eaf3"
         },
         {
           "position": 4,
-          "color": "rgb(192, 234, 243)"
+          "color": "#c0eaf3"
         },
         {
           "position": 10,
-          "color": "rgb(255, 217, 240)"
+          "color": "#ffd9f0"
         },
         {
           "position": 23,
-          "color": "rgb(222, 255, 217)"
+          "color": "#deffd9"
         }
       ],
       "talks": [
